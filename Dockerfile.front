@@ -1,0 +1,7 @@
+FROM node:16
+
+WORKDIR /usr/app/sistema-usuarios-mfs-front/
+
+COPY . .
+
+RUN yarn
