@@ -24,4 +24,4 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          script: cd /home/app/projetos/Mfs/sistema-usuarios/ && docker-compose down && docker-compose up -d --build
+          script: cd /home/app/projetos/Mfs/sistema-usuarios/ && docker-compose stop  sistema-usuarios-front-mfs && docker-compose up -d --build  sistema-usuarios-front-mfs
