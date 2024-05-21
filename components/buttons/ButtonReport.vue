@@ -21,19 +21,19 @@ export default {
           window.location.replace("http://185.209.179.253:8500")
           break
         case "FTI":
-         // alert("Em desenvolvimento")
-         window.location.replace("http://185.209.179.253:7701")
+          // alert("Em desenvolvimento")
+          window.location.replace("http://185.209.179.253:7701")
           break
         case "FIT":
-       //   alert("Em desenvolvimento")
-           // window.location.replace("http://www.google.com.br")
-        window.location.replace("http://185.209.179.253:9007")
-         break
-             case "REL. TRYOUT":
+          //   alert("Em desenvolvimento")
+          // window.location.replace("http://www.google.com.br")
+          window.location.replace("http://185.209.179.253:9007")
+          break
+        case "REL. TRYOUT":
           // alert("Em desenvolvimento")
           window.location.replace("http://185.209.179.253:9200")
-          break  
-     }
+          break
+      }
     }
   },
 }
@@ -45,7 +45,7 @@ export default {
   height: 10rem;
   display: flex;
   justify-content: center;
-  text-align:center;
+  text-align: center;
   align-items: center;
   border-radius: .5rem;
   font-size: 2rem;
@@ -72,4 +72,3 @@ export default {
   }
 }
 </style>
-

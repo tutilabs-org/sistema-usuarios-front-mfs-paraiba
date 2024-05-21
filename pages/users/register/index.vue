@@ -15,6 +15,7 @@
         <inputText :titulo="'Nome Completo'" :status="statusNome" @newValue="watchNome" :valor="''" />
         <inputText :titulo="'E-mail'" :status="statusEmail" @newValue="watchEmail" :valor="''" />
         <inputTextCargo @newValue="watchCargo" :titulo="'Cargo'" :status="statusCargo" :valor="''" />
+        <InputTextUnidade @newValue="watchUnidade" :titulo="'Unidade'" :status="statusUnidade" :valor="''" />
       </div>
       <div class="containerCheck">
         <p class="title">Sistema</p>
@@ -52,8 +53,10 @@ import ButtonSave from "~/components/buttons/ButtonSave.vue";
 import CheckList from "~/components/Lists/CheckList.vue";
 
 import ValidateCargo from "~/utils/ValidateCargos";
+import ValidateUnidade from "~/utils/ValidateUnidades";
 
 import dayjs from "dayjs";
+import InputTextUnidade from "~/components/Inputs/InputTextUnidade.vue";
 
 export default {
   name: "RegisterUserVue",
@@ -78,6 +81,7 @@ export default {
   components: {
     InputText,
     InputTextCargo,
+    InputTextUnidade,
     InputSelect,
 
     ButtonSwitch,
@@ -117,10 +121,15 @@ export default {
       this.statusCargo = false;
       this.cargo = value;
     },
+    watchUnidade(value) {
+      this.statusUnidade = false;
+      this.unidade = value;
+    },
     watchNivel(value) {
       this.nivel = value;
     },
     watchSistemas(value) {
+      console.log(value);
       this.sistemasSelecionados = value;
     },
     cancel() {
@@ -158,6 +167,12 @@ export default {
         errors.push("Cargo não consta na lista");
       }
 
+      const validUnidade = ValidateUnidade(this.unidade);
+      if (validUnidade) {
+        this.statusUnidade = true;
+        errors.push("Coloque a unidade");
+      }
+
       if (!this.nivel) {
         errors.push("Selecione um nível de usuário");
       }
@@ -181,6 +196,7 @@ export default {
           matricula: this.matricula,
           senha: "tuti123",
           cargo: this.cargo,
+          unidade: this.unidade,
           IdNivelDeAcesso: this.nivel,
           sistemas: this.sistemasSelecionados,
         });

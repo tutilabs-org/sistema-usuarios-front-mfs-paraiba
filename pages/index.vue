@@ -3,7 +3,7 @@
     <Header :nome="user.nome_completo" :cargo="user.cargo.descricao" />
     <div class="container_card">
       <div class="frameHub">
-        <MoldeAnimation/>
+        <MoldeAnimation />
       </div>
       <div class="content_scroll">
         <div class="containerButton" v-for="s in sistemas" :key="s.sistema.id">
@@ -23,9 +23,11 @@ export default {
       return;
     }
 
+
     let user = $auth.user;
 
     let sistemas = user.User_Sistema;
+    localStorage.setItem('unidade', user.unidade)
 
     return { user, sistemas };
   },
@@ -59,9 +61,11 @@ export default {
   grid-template: 1fr / 22rem 1fr;
   gap: var(--negativeSpace);
 }
+
 .containerButton {
   height: fit-content;
 }
+
 .content_scroll {
   display: grid;
   grid-auto-rows: 1fr;
@@ -98,6 +102,7 @@ export default {
     grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
   }
 }
+
 @media (max-width: 666px) {
   .container_card {
     grid-template: 23rem / 1fr;
