@@ -10,11 +10,7 @@
       </div>
 
       <form @submit.prevent="login">
-        <input-text
-          :titulo="'Matricula'"
-          :status="statusMatricula"
-          @newValue="novaMatricula"
-        />
+        <input-text :titulo="'Matricula'" :status="statusMatricula" @newValue="novaMatricula" />
         <input-passwords @newValue="novaSenha" :status="statusSenha" />
         <buttonCome />
       </form>
@@ -53,7 +49,7 @@ export default {
     },
     async login() {
       if (!this.user.matricula || !this.user.password) {
-        this.$toast.warning("Mátricula ou senha inválidos");
+        this.$toast.warning("Matrícula ou senha inválidas");
 
         return;
       }
@@ -66,7 +62,7 @@ export default {
         });
 
         if (response.data.data.status == "error") {
-          this.$toast.warning("Mátricula ou senha inválidos");
+          this.$toast.warning("Matrícula ou senha inválidas");
           return;
         }
 
@@ -82,10 +78,11 @@ export default {
 
         this.$toast.success("Logado com sucesso");
         this.$router.push("/");
+        localStorage.setItem('unidade', response.data.data.user.unidade)
 
         return;
       } catch (e) {
-        this.$toast.warning("Mátricula ou senha inválidos");
+        this.$toast.warning("Matrícula ou senha inválidas");
         await this.$auth.logout();
         this.$router.push("/login");
         return;
@@ -132,18 +129,18 @@ export default {
   padding: 2rem;
   align-items: flex-end;
 }
+
 .img-pos {
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: flex-end;
   background: hsla(0, 0%, 100%, 1);
-  background: linear-gradient(
-    180deg,
-    hsla(0, 0%, 100%, 1) 0%,
-    hsla(0, 0%, 94%, 1) 100%
-  );
+  background: linear-gradient(180deg,
+      hsla(0, 0%, 100%, 1) 0%,
+      hsla(0, 0%, 94%, 1) 100%);
 }
+
 .img-pos img {
   width: 100%;
 }
@@ -168,20 +165,21 @@ export default {
   .login-page {
     display: block;
   }
+
   .img-pos {
     height: 30vh;
     display: flex;
     justify-content: center;
   }
+
   .img-pos img {
     position: relative;
     top: max(2rem, 20vw);
     width: max(23rem, 70vw);
   }
+
   .login-inputs {
     height: 70vh;
   }
 }
 </style>
-
-
