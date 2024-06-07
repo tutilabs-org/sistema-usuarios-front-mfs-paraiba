@@ -27,7 +27,6 @@ export default {
     let user = $auth.user;
 
     let sistemas = user.User_Sistema;
-    localStorage.setItem('unidade', user.unidade)
 
     return { user, sistemas };
   },
