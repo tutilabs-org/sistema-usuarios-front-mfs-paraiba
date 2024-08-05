@@ -14,24 +14,24 @@ export default {
     replace() {
       switch (this.comReport) {
         case "RRIM":
-          window.location.replace("http://185.209.179.96:8300")
+          window.location.replace("http://185.209.179.253:8300")
           break
         case "TRYOUT":
           // alert("Em desenvolvimento")
-          window.location.replace("http://185.209.179.96:8500")
+          window.location.replace("http://185.209.179.253:8500")
           break
         case "FTI":
           // alert("Em desenvolvimento")
-          window.location.replace("http://185.209.179.96:7701")
+          window.location.replace("http://185.209.179.253:7701")
           break
         case "FIT":
           //   alert("Em desenvolvimento")
           // window.location.replace("http://www.google.com.br")
-          window.location.replace("http://185.209.179.96:9007")
+          window.location.replace("http://185.209.179.253:9007")
           break
         case "REL. TRYOUT":
           // alert("Em desenvolvimento")
-          window.location.replace("http://185.209.179.96:9200")
+          window.location.replace("http://185.209.179.253:9200")
           break
       }
     }
