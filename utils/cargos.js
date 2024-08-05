@@ -1144,4 +1144,24 @@ export default [
     nome_cargo: "Supervisor de Pintura",
     descricao: null,
   },
+  {
+    id_cargo: 230,
+    nome_cargo: "Especialista de Injeção Plástica",
+    descricao: null,
+  },
+  {
+    id_cargo: 231,
+    nome_cargo: "Especialista de NPI",
+    descricao: null,
+  },
+  {
+    id_cargo: 232,
+    nome_cargo: "Especialista de Materiais e Processo",
+    descricao: null,
+  },
+  {
+    id_cargo: 233,
+    nome_cargo: "Gerente de Engenharia",
+    descricao: null,
+  },
 ];
