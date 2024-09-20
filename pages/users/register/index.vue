@@ -266,7 +266,6 @@ export default {
 form {
   background: var(--bg);
   padding: 2rem var(--negativeSpace);
-
   display: grid;
   grid-template: 1fr / 19rem minmax(37rem, 60rem);
 }
@@ -316,6 +315,7 @@ form {
   .containerRegister {
     padding-right: 0.5em;
   }
+
   form {
     height: auto;
     grid-template: 0.5fr 1fr / 1fr;
@@ -333,17 +333,17 @@ form {
 }
 
 @media (max-width: 564px) {
+
   .containerRegister {
     width: 100%;
     height: auto;
-    border: 1px solid red;
     margin: 0px;
-
   }
 
   .subcontainerregister {
     width: 30vw;
 }
+
 .subcontainerregister h1{
     display: none;
 }

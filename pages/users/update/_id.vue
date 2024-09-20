@@ -9,13 +9,14 @@
           <h1>Editar</h1>
         </div>
       </div>
-      <HomeButton @cancel="cancel"/>
+      <HomeButton @cancel="cancel" id="buttomhome"/>
     </div>
+    <div>
+          <p class="title titleTop" id="titlep">Dados dos usuários</p>
+        </div>
     <form @submit.prevent="editUser">
       <div class="columInputs">
-        <div>
-          <p class="title titleTop">Dados dos usuários</p>
-        </div>
+      
         <inputText :titulo="'Matricula'" :status="statusMatricula" :valor="user.matricula" @newValue="watchMatricula" />
         <inputText :titulo="'Nome Completo'" :status="statusNome" @newValue="watchNome" :valor="user.nome_completo" />
         <inputText :titulo="'E-mail'" :status="statusEmail" @newValue="watchEmail" :valor="user.email" />
@@ -263,7 +264,6 @@ export default {
 form {
   background: var(--bg);
   padding: 2rem var(--negativeSpace);
-
   display: grid;
   grid-template: 1fr / 19rem minmax(37rem, 60rem);
 }
@@ -281,6 +281,7 @@ form {
 
 .headerCheck .styleGap {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -306,7 +307,15 @@ form {
   margin-top: 1rem;
 }
 
-@media (max-width: 865px) {
+#titlep { 
+ margin-left:2em;
+}
+@media (max-width: 1327px) {
+
+  .containerRegister {
+    padding-right: 0.5em;
+  }
+
   form {
     height: auto;
     grid-template: 0.5fr 1fr / 1fr;
@@ -318,17 +327,27 @@ form {
     border: none;
   }
 
-  .titleTop {
-    position: absolute;
-    top: 23.5vh;
-  }
-
   .containerCheck {
     border: none;
   }
 }
 
 @media (max-width: 564px) {
+
+  .containerRegister {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+  }
+
+  .subcontainerregister {
+    width: 30vw;
+}
+
+.subcontainerregister h1{
+    display: none;
+}
+
   .headerCheck {
     flex-direction: column;
     align-items: flex-start;
