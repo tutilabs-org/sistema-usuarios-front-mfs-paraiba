@@ -52,6 +52,7 @@ header {
   background-color: #ffff;
   height: 4.7em;
   width: 100%;
+  margin: 0 auto;
   border-bottom: 1px solid var(--border);
 }
 
@@ -60,7 +61,7 @@ header {
   column-gap: 20px;
   align-items: center;
   overflow: hidden;
-  height: 10.54vh;
+  height: 10.54em;
 }
 
 #logo {
@@ -112,42 +113,61 @@ button {
   }
 
   button {
-    background-size: 140%;
+    background-size: 120%;
     width: 2.8em;
     height: 4.8em;
+  }
+}
+
+@media (max-height: 770px) {
+  h1 {
+    font-size: 1.4em;
   }
 }
 
 @media (max-width: 402px) {
   header {
-    justify-content: center;
-    flex-wrap: wrap;
-    height: 15em;
+    justify-content: space-between;
+    height: 20vw;
     padding: 10px 10px;
+    width: 100%; 
+    margin: auto; 
+    box-sizing: border-box; 
   }
 
   h1 {
-    font-size: 1.7em;
+    font-size: 3.5vw;
   }
 
   h2 {
-    font-size: 1.1em;
+    font-size: 3vw;
   }
 
   button {
-    background-size: 140%;
-    width: 2.8em;
-    height: 4.8em;
+    background-size: 120%;
+    width: 2em;
+    height: 4em;
   }
 
   #logo {
-    width: 10em;
+    width: 28vw;
     height: 4em;
   }
 
   #login {
     justify-content: center;
-    width: 80vw;
+    width: auto;
+    padding:0;
+    height: auto;
+    margin-left: auto;
   }
+
+  header {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
 }
+}
+
+
 </style>

@@ -1,16 +1,21 @@
 <template>
   <div>
     <div class="containerRegister">
-      <div class="icon">
-        <img src="~assets/img/user.svg" alt="" />
+      <div class="subcontainerregister">
+        <div class="icon">
+          <img src="~assets/img/user.svg" alt="" />
+        </div>
+        <div class="inform">
+          <h1>Registrar</h1>
+        </div>
       </div>
-      <div class="inform">
-        <h1>Registrar</h1>
-      </div>
+      <HomeButton @cancel="cancel"/>
     </div>
     <form @submit.prevent="createUser">
       <div class="columInputs">
-        <p class="title titleTop">Dados do usuários</p>
+        <div>
+          <p class="title titleTop">Dados dos usuários</p>
+        </div>
         <inputText :titulo="'Matricula'" :status="statusMatricula" @newValue="watchMatricula" :valor="''" />
         <inputText :titulo="'Nome Completo'" :status="statusNome" @newValue="watchNome" :valor="''" />
         <inputText :titulo="'E-mail'" :status="statusEmail" @newValue="watchEmail" :valor="''" />
@@ -51,12 +56,13 @@ import ButtonCancel from "~/components/buttons/ButtonCancel.vue";
 import ButtonSave from "~/components/buttons/ButtonSave.vue";
 
 import CheckList from "~/components/Lists/CheckList.vue";
-
+import Header from "~/components/Header.vue";
 import ValidateCargo from "~/utils/ValidateCargos";
 import ValidateUnidade from "~/utils/ValidateUnidades";
 
 import dayjs from "dayjs";
 import InputTextUnidade from "~/components/Inputs/InputTextUnidade.vue";
+import HomeButton from "~/components/buttons/ButtonHome.vue";
 
 export default {
   name: "RegisterUserVue",
@@ -83,12 +89,12 @@ export default {
     InputTextCargo,
     InputTextUnidade,
     InputSelect,
-
     ButtonSwitch,
     ButtonCancel,
     ButtonSave,
-
+    HomeButton,
     CheckList,
+    Header,
   },
   data() {
     return {
@@ -129,7 +135,6 @@ export default {
       this.nivel = value;
     },
     watchSistemas(value) {
-      console.log(value);
       this.sistemasSelecionados = value;
     },
     cancel() {
@@ -189,6 +194,21 @@ export default {
         return;
       }
 
+      // Ordene os sistemas selecionados com base nessa ordem
+      this.sistemasSelecionados.sort((a, b) => {
+        return a.index - b.index;
+      });      
+      
+      let listSystems = []
+
+      this.sistemasSelecionados.map((item) => {
+        listSystems.push(item.id)
+      })     
+
+      //console.log(listSystems);
+      
+
+      // inicio requicao
       try {
         await this.$axios.post("users/create", {
           name: this.nome,
@@ -198,7 +218,7 @@ export default {
           cargo: this.cargo,
           unidade: this.unidade,
           IdNivelDeAcesso: this.nivel,
-          sistemas: this.sistemasSelecionados,
+          sistemas: listSystems,
         });
 
         this.$toast.success("Usuário cadastrado com sucesso");
@@ -206,6 +226,7 @@ export default {
       } catch (e) {
         this.$toast.warning("Matricula ou Email já cadastrados no sistema");
       }
+      // fim da requisicao
     },
   },
 };
@@ -213,11 +234,20 @@ export default {
 <style scoped>
 .containerRegister {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
   padding: 1rem var(--negativeSpace);
   width: 100%;
   height: 14vh;
+  padding-right: 5em;
+  margin: 1rem 0;
+}
+
+.subcontainerregister {
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
 .inform h3 {
@@ -280,7 +310,12 @@ form {
   margin-top: 1rem;
 }
 
+
 @media (max-width: 865px) {
+
+  .containerRegister {
+    padding-right: 0.5em;
+  }
   form {
     height: auto;
     grid-template: 0.5fr 1fr / 1fr;
@@ -292,17 +327,27 @@ form {
     border: none;
   }
 
-  .titleTop {
-    position: absolute;
-    top: 23.5vh;
-  }
-
   .containerCheck {
     border: none;
   }
 }
 
 @media (max-width: 564px) {
+  .containerRegister {
+    width: 100%;
+    height: auto;
+    border: 1px solid red;
+    margin: 0px;
+
+  }
+
+  .subcontainerregister {
+    width: 30vw;
+}
+.subcontainerregister h1{
+    display: none;
+}
+
   .headerCheck {
     flex-direction: column;
     align-items: flex-start;

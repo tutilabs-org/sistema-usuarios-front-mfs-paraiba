@@ -1,16 +1,21 @@
 <template>
   <div>
     <div class="containerRegister">
-      <div class="icon">
-        <img src="~assets/img/user.svg" alt="" />
+      <div class="subcontainerregister">
+        <div class="icon">
+          <img src="~assets/img/user.svg" alt="" />
+        </div>
+        <div class="inform">
+          <h1>Editar</h1>
+        </div>
       </div>
-      <div class="inform">
-        <h1>Editar</h1>
-      </div>
+      <HomeButton @cancel="cancel"/>
     </div>
     <form @submit.prevent="editUser">
       <div class="columInputs">
-        <p class="title titleTop">Dados do usuários</p>
+        <div>
+          <p class="title titleTop">Dados dos usuários</p>
+        </div>
         <inputText :titulo="'Matricula'" :status="statusMatricula" :valor="user.matricula" @newValue="watchMatricula" />
         <inputText :titulo="'Nome Completo'" :status="statusNome" @newValue="watchNome" :valor="user.nome_completo" />
         <inputText :titulo="'E-mail'" :status="statusEmail" @newValue="watchEmail" :valor="user.email" />
@@ -52,7 +57,7 @@ import ButtonSwitch from "~/components/buttons/ButtonSwitch.vue";
 import ButtonSwitchResetPassword from "~/components/buttons/ButtonSwitchResetPassword.vue";
 import ButtonCancel from "~/components/buttons/ButtonCancel.vue";
 import ButtonSave from "~/components/buttons/ButtonSave.vue";
-
+import HomeButton from "~/components/buttons/ButtonHome.vue";
 import CheckList from "~/components/Lists/CheckList.vue";
 
 import ValidateCargo from "~/utils/ValidateCargos";
@@ -86,7 +91,7 @@ export default {
     InputTextCargo,
     InputSelect,
     InputPassWords,
-
+    HomeButton,
     ButtonSwitch,
     ButtonSwitchResetPassword,
     ButtonCancel,
@@ -226,11 +231,20 @@ export default {
 <style scoped>
 .containerRegister {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
   padding: 1rem var(--negativeSpace);
   width: 100%;
   height: 14vh;
+  padding-right: 5em;
+  margin: 1rem 0;
+}
+
+.subcontainerregister {
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
 .inform h3 {

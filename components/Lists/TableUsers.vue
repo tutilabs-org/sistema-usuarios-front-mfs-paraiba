@@ -1,45 +1,44 @@
 <template>
   <div class="tableContent">
-    <table cellpadding="0">
+    <table>
       <thead>
-        <th>Matrícula</th>
-        <th abbr="Nome">Nome Completo</th>
-        <th>E-mail</th>
-        <th>Sistemas</th>
-        <th>Cargo</th>
-        <th>Unidade</th>
-        <th>Status</th>
-        <th>Opções</th>
+        <th><p>MATRÍCULA</p></th>
+        <th abbr="Nome"><p>NOME COMPLETO</p></th>
+        <th><p>E-MAIL</p></th>
+        <th><p>SISTEMA</p></th>
+        <th><p>CARGO</p></th>
+        <th><p>UNIDADE</p></th>
+        <th><p>STATUS</p></th>
+        <th><p>OPÇÕES</p></th>
       </thead>
       <tbody>
-        <tr v-for="u in usuarios" :key="u.id">
+        <tr v-for="u in orderedUsuarios" :key="u.id">
           <td style="display:none"></td>
-          <td data-title="Matricula">{{ u.matricula }}</td>
-          <td data-title="Nome">{{ u.nome_completo }}</td>
+          <td data-title="Matricula"><p>{{ u.matricula }}</p></td>
+          <td data-title="Nome"><p>{{ u.nome_completo }}</p></td>
           <td data-title="E-mail" class="hoverMouse" :title="u.email">
-            {{ u.email }}
+            <p>{{ u.email }}</p>
           </td>
           <td data-title="Sistemas" class="hoverMouse" :title="'Sistemas'">
-            <div class="sistemas" v-for="s in u.User_Sistema" :key="s.sistema.id">
-              <div>
-                {{ s.sistema.descricao }}
-              </div>
+            <div class="sistemas">
+            <div v-for="(s, index) in u.User_Sistema" :key="s.sistema.id">
+              <p id="systemp">{{ s.sistema.descricao }}
+                <span v-if="index < u.User_Sistema.length - 1" class="comma">, </span>
+              </p>
             </div>
+          </div>
           </td>
-          <td data-title="Cargo">{{ u.cargo.descricao }}</td>
-          <td data-title="Cargo">{{ u.unidade === 'MAO' ? 'Manaus' : 'Paraíba' }}</td>
+          <td data-title="Cargo"><p>{{ u.cargo.descricao }}</p></td>
+          <td data-title="Unidade"><p>{{ u.unidade === 'MAO' ? 'Manaus' : 'Paraíba' }}</p></td>
           <td data-title="Status">
-            {{ u.status ? "Ativo" : "Desativado" }}
+            <p>{{ u.status ? "Ativo" : "Desativado" }}</p>
           </td>
           <td data-title="Opções">
             <div class="opcoes">
               <button @click="edit(u.id)">
-                <img src="~/assets/img/iconEdit.svg" alt="">
-                Editar
               </button>
             </div>
           </td>
-
         </tr>
       </tbody>
     </table>
@@ -52,6 +51,17 @@ export default {
   props: {
     usuarios: Array,
   },
+  computed: {
+    orderedUsuarios() {
+      const order = ["RRIM", "TRYOUT", "REL. TRYOUT", "FTI", "FIT"];
+      return this.usuarios.map((user) => {
+        user.User_Sistema = user.User_Sistema.sort((a, b) => {          
+          return order.indexOf(a.sistema.descricao) - order.indexOf(b.sistema.descricao);
+        });
+        return user;
+      });
+    },
+  },
   methods: {
     edit(id) {
       this.$router.push(`/users/update/${id}`);
@@ -60,13 +70,27 @@ export default {
 };
 </script>
 <style scoped>
+thead{
+  background-color: #ccc8c8;
+  height: 8vh;
+}
+
+thead th{
+  color: #000000;
+  padding: 0.5rem 1rem; 
+  font-weight: normal; 
+}
+
 .opcoes {
   display: flex;
   justify-content: center;
 }
 
 .opcoes button {
-  background: #ffffff;
+  background-image: url(../../assets/img/editicon.svg);
+  background-size: cover;
+  height: 2.5rem;
+  width: 2.5rem;
   border: none;
   padding: .5rem;
   border-radius: .5rem;
@@ -74,33 +98,23 @@ export default {
   align-items: center;
   gap: .5rem;
   border: 1px solid #cbcbcb;
+  cursor: pointer;
 }
 
-table,
-td,
-th {
+table, td, th {
   border: none;
 }
 
 table {
+  margin: 0 auto;
+  width: 99%;
   border-spacing: 0px;
-}
-
-.sistemas div:after {
-  content: ", ";
-}
-
-.sistemas div:nth-last-child(-n + 1):after {
-  content: " ";
-}
-
-table {
-  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 table td {
   height: 6rem;
-
 }
 
 table tr:nth-child(2n) {
@@ -109,12 +123,45 @@ table tr:nth-child(2n) {
 
 td {
   text-align: center;
+  padding: 1rem 0rem;
+}
+
+th p {
+  font-size: 1vw;
+}
+
+p {
+  font-size: 1.2vw;
+}
+
+#systemp {
+  font-weight: bold;
+}
+
+.comma {
+  margin-left: 0;
+  padding-left: 0;
 }
 
 @media(max-width:768px) {
 
+  tbody tr {
+  margin-bottom: 2rem; 
+  display: block; 
+  }
+
+  td:nth-child(2n), th:nth-child(2n) {
+    background-color: #dfdfdf; 
+  }
+
+
+  table {
+    padding: 1em;
+    border-spacing: 0; 
+  }
+
   table td {
-    border-bottom: 0.4px solid rgba(0, 0, 0, 0.199);
+    padding: 1em;
   }
 
   table tr {
@@ -175,5 +222,35 @@ td {
   .lastTd {
     border-bottom: 1.6px solid var(--green_text);
   }
+
+  p {
+    font-size: 1em;
+  }
+
+  .sistemas {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 0.5rem;
+  }
+
+  .sistemas div {
+    display: inline-block; 
+    padding: 0.2rem 0; 
+  }
+
 }
+
+@media (max-width: 450px) {
+  td {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding:0px;
+  }
+  p{
+    font-size: 3.5vw;
+  }
+}
+
 </style>
+

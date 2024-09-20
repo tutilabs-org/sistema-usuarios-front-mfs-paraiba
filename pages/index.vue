@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div id="container">
     <Header :nome="user.nome_completo" :cargo="user.nivel_de_acesso.descricao" />
     <main>
-          <div class="containerButton" v-for="s in sistemas" :key="s.sistema.id">
+          <div class="containerButton" v-for="s in ordered_systems" :key="s.sistema.id">
             <ButtonReport :comReport="`${s.sistema.descricao}`" />
           </div>
     </main>
+    <div id="version"><h3>{{ version }}</h3></div>
   </div>
 </template>
 
@@ -21,18 +22,44 @@ export default {
     let user = $auth.user;
 
     let sistemas = user.User_Sistema;
-
     return { user, sistemas };
   },
   middleware: "authenticated",
   components: { ButtonReport },
   data() {
-    return {};
+    return {
+      version: 'V2.0.0',
+    };
   },
+  computed: {
+    ordered_systems() {
+      const desired_order = ["RRIM", "TRYOUT", "REL. TRYOUT", "FTI", "FIT"];
+      return this.sistemas.slice().sort((a, b) => {
+        return desired_order.indexOf(a.sistema.descricao) - desired_order.indexOf(b.sistema.descricao);
+      });
+    }
+  }
 };
 </script>
 
 <style scoped>
+#container {
+  height: 100vh;
+}
+
+#version {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px;
+  z-index: 1000; 
+}
+
+h3 {
+  font-size: 1rem;
+}
+
 main {
     display: grid;
     justify-content: center;

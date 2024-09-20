@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .search {
-  width: 18rem;
+  width: 28vw;
   height: 3rem;
   background: var(--gray);
   padding:var(--paddingInput) 1rem;
@@ -42,5 +42,12 @@ export default {
 }
 .search input {
   background: 0;
+}
+
+@media (max-width: 678px) {
+  .search {
+    width: 80vw;
+    margin: 0 auto;
+}
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <div class="boxButton">
+  <div class="boxButton" @click="change">
     <p>
-      Reset senha
-      <span v-if="desativado">DESATIVADO</span>
-      <span v-else>ATIVADO</span>
+      Reset senha:
     </p>
-    <div class="btn_switch" @click="change" :class="{ myStatus: desativado }">
+  <span style="color: var(--red);" v-if="desativado">DESATIVADO</span>
+    <span style="color:var(--green)" v-else>ATIVADO</span>
+    <div class="btn_switch":class="{ myStatus: desativado }">
       <div></div>
     </div>
   </div>
@@ -36,35 +36,40 @@ export default {
 
 <style scoped>
 .boxButton{
-  width: 13rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  gap: 1em;
+  padding: 0px 1em;
 }
 .btn_switch {
-  width: 6rem;
-  height: 3rem;
+  width: 4.4rem;
+  height: 1.8rem;
   background: var(--green);
-  border-radius: 2rem;
+  border-radius: 1.6rem;
   display: flex;
   align-items: center;
   padding-left: 0.3rem;
   cursor: pointer;
-
   transition: 0.2s;
 }
 .btn_switch :nth-child(1) {
   background: var(--white);
-  min-width: 2.5rem;
-  min-height: 2.5rem;
+  min-width: 1.3rem;
+  min-height: 1.3rem;
   border-radius: var(--circuleRadius);
 }
 .myStatus {
   background: var(--orange);
-  padding-left: 3.2rem;
+  padding-left: 2.8rem;
 }
 P {
-  color: var(--green);
+  color: var(--dark);
   font-weight: var(--bold);
 }
 span {
   color: var(--gray_text);
+  font-weight: var(--bold);
+  cursor: pointer;
 }
 </style>

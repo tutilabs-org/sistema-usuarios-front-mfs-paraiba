@@ -20,24 +20,24 @@ export default {
     replace() {
       switch (this.comReport) {
         case "RRIM":
-          window.location.replace("http://185.209.179.96:8300");
+          window.location.replace(process.env.NUXT_ENV_URL_RRIM);
           break
         case "TRYOUT":
           // alert("Em desenvolvimento")
-          window.location.replace("http://185.209.179.96:8500")
+          window.location.replace(process.env.NUXT_ENV_URL_TRYOUT);
           break
         case "FTI":
           // alert("Em desenvolvimento")
-          window.location.replace("http://185.209.179.96:7701")
+          window.location.replace(process.env.NUXT_ENV_URL_FTI)
           break
         case "FIT":
           //   alert("Em desenvolvimento")
           // window.location.replace("http://www.google.com.br")
-          window.location.replace("http://185.209.179.96:9007")
+          window.location.replace(process.env.NUXT_ENV_URL_FIT)
           break
         case "REL. TRYOUT":
           // alert("Em desenvolvimento")
-          window.location.replace("http://185.209.179.96:9200")
+          window.location.replace(process.env.NUXT_ENV_URL_RELTRYOUT)
           break
       }
     }
@@ -79,10 +79,16 @@ section {
     border: 1.067px solid var(--border);
     max-width: 100%;
     cursor: pointer;
+    transition: border-color 0.3s ease;
 }
 
 section:hover{
     border: 3px solid var(--border);
+    padding: 0;
+}
+
+section:active{
+    border: 3px solid #b3b3b3;
     padding: 0;
 }
 
