@@ -310,7 +310,7 @@ form {
 #titlep { 
  margin-left:2em;
 }
-@media (max-width: 1327px) {
+@media (max-width: 865px) {
 
   .containerRegister {
     padding-right: 0.5em;
