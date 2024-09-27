@@ -38,8 +38,8 @@
           <CheckList :sistemas="sistemas" @watchSistemas="watchSistemas" :user_s="[]" />
         </div>
         <div class="rowsButtons">
-          <ButtonCancel @cancel="cancel" />
-          <ButtonSave />
+          <ButtonComponent :title="'Cancelar'" :color="'outlined'" @click="cancel"/>
+          <ButtonComponent :title="'Salvar'" :color="'green'" type="submit"/>
         </div>
       </div>
     </form>
@@ -63,6 +63,7 @@ import ValidateUnidade from "~/utils/ValidateUnidades";
 import dayjs from "dayjs";
 import InputTextUnidade from "~/components/Inputs/InputTextUnidade.vue";
 import HomeButton from "~/components/buttons/ButtonHome.vue";
+import ButtonComponent from "~/components/buttons/ButtonComponent.vue";
 
 export default {
   name: "RegisterUserVue",
@@ -94,6 +95,7 @@ export default {
     ButtonSave,
     HomeButton,
     CheckList,
+    ButtonComponent,
     Header,
   },
   data() {
@@ -345,7 +347,7 @@ form {
 }
 
 .subcontainerregister h1{
-    display: none;
+    font-size:6vw;
 }
 
   .headerCheck {

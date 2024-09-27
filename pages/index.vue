@@ -72,26 +72,32 @@ main {
 }
 
 @media (max-width: 1322px) {
+
     main {
         justify-content: center;
         grid-template-columns: repeat(3, auto);        
     }
+
 }
 
 @media (max-width: 989px) {
+
     main {
         justify-content: center;
         grid-template-columns: repeat(2, auto);
         column-gap: 5vw;    
     }
+
 }
 
 @media (max-width: 692px) {
+
     main {
         justify-content: center;
         grid-template-columns: repeat(1, auto);
         row-gap: 10vw; 
     }
+    
 }
 
 </style>

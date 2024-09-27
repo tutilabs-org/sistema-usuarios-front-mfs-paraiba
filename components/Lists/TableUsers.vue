@@ -111,6 +111,7 @@ table {
   border-spacing: 0px;
   border-radius: 0.5rem;
   overflow: hidden;
+  margin-bottom: 1em;
 }
 
 table td {

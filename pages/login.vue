@@ -12,7 +12,7 @@
       <form @submit.prevent="login">
         <input-text :titulo="'Matricula'" :status="statusMatricula" @newValue="novaMatricula" />
         <input-passwords @newValue="novaSenha" :status="statusSenha" />
-        <buttonCome />
+        <ButtonComponent :title="'Entrar'" :color="'green3'" type="submit"/>
       </form>
     </div>
   </div>
@@ -22,10 +22,11 @@
 import ButtonCome from "~/components/buttons/ButtonCome.vue";
 import InputPasswords from "~/components/Inputs/InputPasswords.vue";
 import InputText from "~/components/Inputs/InputText.vue";
+import ButtonComponent from "~/components/buttons/ButtonComponent.vue"
 
 export default {
   layout: "login",
-  components: { InputPasswords, InputText, ButtonCome },
+  components: { InputPasswords, InputText, ButtonComponent, ButtonCome },
   methods: {
     novaMatricula(valor) {
       this.user.matricula = valor;
@@ -182,4 +183,5 @@ export default {
     height: 70vh;
   }
 }
+
 </style>

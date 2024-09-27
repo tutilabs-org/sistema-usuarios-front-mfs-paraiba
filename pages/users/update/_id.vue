@@ -40,8 +40,8 @@
           <CheckList :sistemas="sistemas" @watchSistemas="watchSistemas" :user_s="user.User_Sistema" />
         </div>
         <div class="rowsButtons">
-          <ButtonCancel @cancel="cancel" />
-          <ButtonSave />
+          <ButtonComponent :title="'Cancelar'" :color="'outlined'" @click="cancel"/>
+          <ButtonComponent :title="'Salvar'" :color="'green'" type="submit"/>
         </div>
       </div>
     </form>
@@ -53,15 +53,14 @@ import InputText from "~/components/Inputs/InputText.vue";
 import InputTextCargo from "~/components/Inputs/InputTextCargo.vue";
 import InputSelect from "~/components/Inputs/InputSelect.vue";
 import InputPassWords from "~/components/Inputs/InputPasswords.vue";
-
 import ButtonSwitch from "~/components/buttons/ButtonSwitch.vue";
 import ButtonSwitchResetPassword from "~/components/buttons/ButtonSwitchResetPassword.vue";
 import ButtonCancel from "~/components/buttons/ButtonCancel.vue";
 import ButtonSave from "~/components/buttons/ButtonSave.vue";
 import HomeButton from "~/components/buttons/ButtonHome.vue";
 import CheckList from "~/components/Lists/CheckList.vue";
-
 import ValidateCargo from "~/utils/ValidateCargos";
+import ButtonComponent from "~/components/buttons/ButtonComponent.vue"
 
 import dayjs from "dayjs";
 
@@ -97,7 +96,7 @@ export default {
     ButtonSwitchResetPassword,
     ButtonCancel,
     ButtonSave,
-
+    ButtonComponent,
     CheckList,
   },
   data() {
@@ -310,6 +309,7 @@ form {
 #titlep { 
  margin-left:2em;
 }
+
 @media (max-width: 865px) {
 
   .containerRegister {
@@ -345,7 +345,7 @@ form {
 }
 
 .subcontainerregister h1{
-    display: none;
+    font-size: 6vw;
 }
 
   .headerCheck {
@@ -361,5 +361,6 @@ form {
   .containerCheck {
     padding: 0;
   }
+
 }
 </style>

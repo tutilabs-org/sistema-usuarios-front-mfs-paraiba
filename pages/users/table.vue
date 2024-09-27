@@ -18,6 +18,7 @@
             <div class="space" v-else>
         <h1>Não há usuários cadastrados</h1>
             </div>
+        <div id="version"><h3>{{ version }}</h3></div>
   </div>
 </template>
 
@@ -66,6 +67,7 @@ export default {
     return {
       status: false,
       inputSearch: "",
+      version: 'V2.0.0',
     };
   },
   methods: {
@@ -111,6 +113,15 @@ export default {
 </script>
 
 <style scoped>
+
+#version {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px;
+  z-index: 1000; 
+}
 
 .content {
   display: grid;
