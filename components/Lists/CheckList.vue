@@ -8,7 +8,7 @@
             (system) => system.sistema.descricao === s.descricao
           ),
         }"
-        @click="check($event, s)"
+        @click="check($event, s, index)"
       ></div>
       <div class="text">
         <h3>{{ s.descricao }}</h3>
@@ -40,7 +40,7 @@ export default {
   },
   emit: ["watchSistemas"],
   methods: {
-    check(event, s) {
+    check(event, s, index) {
       const icon = event.target;
 
       icon.classList.toggle("btnCheck_green");
@@ -54,7 +54,10 @@ export default {
         return;
       }
 
-      this.sis.push(s.id);
+      this.sis.push({
+        index: index,
+        id: s.id
+      });
       this.$emit("watchSistemas", this.sis);
     },
   },
@@ -88,7 +91,11 @@ export default {
   border-radius: 0.5rem;
 }
 .btnCheck_green {
-  background: var(--green);
+  background-image: url(../../assets/img/check_box.svg);
+  background-repeat: no-repeat;
+  background-size: 85%;
+  background-position: center;
+  background-color: var(--green);
 }
 @media (max-width: 400px) {
   .container {

@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -22,7 +26,8 @@
   --gray:#E5E5E5;
   --gray_text:#868686;
   --black_text:#444444;
-
+  --border: #D5E7D9;
+  --dark: #4D4D4D;
   --green:#43CC74;
   --orange:#FDA451;
   --blue:#5F9DFF;
@@ -45,6 +50,14 @@
   /* weight */
   --bold:600;
   --regular:400;
+  --background-c:#D9D9D9;
+  --background-f:#393939;
+  --rrim-color: linear-gradient(75deg, #14A373 28.16%, #073D2B 115.16%);
+  --soltryout-color: linear-gradient(75deg, #1470A3 28.16%, #030D27 115.16%);
+  --reltryout-color: linear-gradient(75deg, #D87215 28.16%, #2E0B04 115.16%);
+  --fit-color: linear-gradient(75deg, #8E42A9 28.16%, #0F042E 115.16%);
+  --fti-color: linear-gradient(75deg, #C13737 28.16%, #2E0404 115.16%);
+  --default-color: linear-gradient(75deg, #4D4D4D 28.16%, #0f0e0e 115.16%);
 }
 
 body{

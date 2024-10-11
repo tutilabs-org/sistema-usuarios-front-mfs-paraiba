@@ -1,17 +1,16 @@
 <template>
 <div class="container">
-    <Navbar/>
+  
     <Nuxt/>
 </div>
 </template>
 
 <script>
+import ButtonReport from "../components/buttons/ButtonReport.vue";
 export default {
-
-}
+  
+  }
 </script>
 <style scoped>
- .container{
-   margin-top:10vh;
- }
+
 </style>

@@ -28,7 +28,7 @@ export default {
   buildModules: ["@nuxtjs/svg"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios", "@nuxtjs/auth-next", "vue-toastification/nuxt"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/auth-next", "vue-toastification/nuxt"], 
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

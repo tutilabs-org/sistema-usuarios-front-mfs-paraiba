@@ -1,43 +1,39 @@
 <template>
   <div class="tableContent">
-    <table cellpadding="0">
+    <table>
         <thead>
-          <th>Matrícula</th>
-          <th abbr="Nome">Nome Completo</th>
-          <th>E-mail</th>
-          <th>Sistemas</th>
-          <th>Cargo</th>
-          <th>Status</th>
-          <th>Opções</th>
+          <th><p>MATRÍCULA</p></th>
+          <th abbr="Nome"><p>NOME COMPLETO</p></th>
+          <th><p>E-MAIL</p></th>
+          <th><p>SISTEMAS</p></th>
+          <th><p>CARGO</p></th>
+          <th><p>STATUS</p></th>
+          <th><p>OPÇÕES</p></th>
         </thead>
         <tbody>
           <tr v-for="u in usuarios" :key="u.id">
               <td style="display: none"></td>
-              <td data-title="Matricula">{{ u.matricula }}</td>
-              <td data-title="Nome">{{ u.nome_completo }}</td>
+              <td data-title="Matricula"><p>{{ u.matricula }}</p></td>
+              <td data-title="Nome"><p>{{ u.nome_completo }}</p></td>
               <td data-title="E-mail" class="hoverMouse" :title="u.email">
-                {{ u.email }}
+                <p>{{ u.email }}</p>
               </td>
               <td data-title="Sistemas" class="hoverMouse" :title="'Sistemas'">
                 <!-- Div de controle de sistemas  -->
-                <div>######</div>
+                <div id="systemp">######</div>
               </td>
-              <td data-title="Cargo">{{ u.cargo.descricao }}</td>
+              <td data-title="Cargo"><p>{{ u.cargo.descricao }}</p></td>
               <td data-title="Status">
-                {{ u.status ? "Ativo" : "Desativado" }}
+                <p>{{ u.status ? "Ativo" : "Desativado" }}</p>
               </td>
               <td data-title="opcoes">
                 <div class="opcoes">
                   <button @click="edit(u.id)">
-                    <img src="~/assets/img/iconEdit.svg" alt="">
-                    Editar
                   </button>
                 </div>
               </td>
-
           </tr>
         </tbody>
-
     </table>
   </div>
 </template>
@@ -56,9 +52,27 @@ export default {
 };
 </script>
 <style scoped>
+thead{
+  background-color: #ccc8c8;
+  height: 8vh;
+}
 
-.opcoes button{
-  background: #ffffff;
+thead th{
+  color: #000000;
+  padding: 0.5rem 1rem; 
+  font-weight: normal; 
+}
+
+.opcoes {
+  display: flex;
+  justify-content: center;
+}
+
+.opcoes button {
+  background-image: url(../../assets/img/editicon.svg);
+  background-size: cover;
+  height: 2.5rem;
+  width: 2.5rem;
   border: none;
   padding: .5rem;
   border-radius: .5rem;
@@ -66,44 +80,82 @@ export default {
   align-items: center;
   gap: .5rem;
   border: 1px solid #cbcbcb;
+  cursor: pointer;
 }
 
 table, td, th {
   border: none;
 }
-table{
-  border-spacing: 0px;
-}
-.sistemas div:after {
-  content: ", ";
-}
-.sistemas div:nth-last-child(-n + 1):after {
-  content: " ";
-}
-table{
-  width: 100%;
-}
-table td{
-  height: 6rem;
 
+table {
+  margin: 0 auto;
+  width: 99%;
+  border-spacing: 0px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1em;
 }
-table tr:nth-child(2n){
+
+table td {
+  height: 6rem;
+}
+
+table tr:nth-child(2n) {
   background: #dfdfdf;
 }
-td{
+
+td {
   text-align: center;
+  padding: 1rem 0rem;
 }
-@media(max-width:768px){
+
+th p {
+  font-size: 1vw;
+}
+
+p {
+  font-size: 1.2vw;
+}
+
+#systemp {
+  font-weight: bold;
+}
+
+.comma {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+@media(max-width:768px) {
+
+  tbody tr {
+  margin-bottom: 2rem; 
+  display: block; 
+  }
+
+  td:nth-child(2n), th:nth-child(2n) {
+    background-color: #dfdfdf; 
+  }
+
+
+  table {
+    padding: 1em;
+    border-spacing: 0; 
+  }
+
   table td {
-  border-bottom: 0.4px solid rgba(0, 0, 0, 0.199);
-}
-table tr{
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-table tr:nth-child(2n){
-  background: none;
-}
-.opcoes {
+    padding: 1em;
+  }
+
+  table tr {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  table tr:nth-child(2n) {
+    background: none;
+  }
+
+  .opcoes {
     justify-content: end;
   }
 
@@ -111,6 +163,7 @@ table tr:nth-child(2n){
     display: flex;
     padding: 10px 30px 10px 30px;
   }
+
   .tableContent thead {
     display: none;
   }
@@ -152,5 +205,21 @@ table tr:nth-child(2n){
   .lastTd {
     border-bottom: 1.6px solid var(--green_text);
   }
+
+  p {
+    font-size: 1em;
+  }
+
+  .sistemas {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 0.5rem;
+  }
+
+  .sistemas div {
+    display: inline-block; 
+    padding: 0.2rem 0; 
+  }
+
 }
 </style>

@@ -1,23 +1,24 @@
 <template>
   <div>
     <Header :nome="user.nome_completo" :cargo="user.cargo.descricao" />
-    <div class="content">
-      <InputSearch @searchColaborador="searchColaborador" />
-      <div class="contentButtons">
-        <ButtonSwitch :status="status" @changeStatus="changeStatus" />
-        <ButtonRegister @register="resgistrarColaborador" />
-      </div>
-    </div>
-    <div class="space" v-if="
-      (!status && usuariosAtivos.length > 0) ||
-      (status && usuariosInativos.length > 0)
-    ">
-      <TableUsers v-if="!status" :usuarios="ativos" />
-      <TableUsersInativos v-else :usuarios="inativos" />
-    </div>
-    <div class="space" v-else>
-      <h1>Não há usuários cadastrados</h1>
-    </div>
+        <div class="contentButtons">
+          <div id="subcontent">
+            <InputSearch class="inputsearch" @searchColaborador="searchColaborador" />
+            <ButtonSwitch :status="status" @changeStatus="changeStatus" />
+          </div>
+          <ButtonRegister class="responsive-button" @register="resgistrarColaborador" />
+        </div>
+            <div class="space" v-if="
+        (!status && usuariosAtivos.length > 0) ||
+        (status && usuariosInativos.length > 0)
+            ">
+        <TableUsers v-if="!status" :usuarios="ativos" />
+        <TableUsersInativos v-else :usuarios="inativos" />
+            </div>
+            <div class="space" v-else>
+        <h1>Não há usuários cadastrados</h1>
+            </div>
+        <div id="version"><h3>{{ version }}</h3></div>
   </div>
 </template>
 
@@ -66,6 +67,7 @@ export default {
     return {
       status: false,
       inputSearch: "",
+      version: 'V2.0.0',
     };
   },
   methods: {
@@ -111,6 +113,16 @@ export default {
 </script>
 
 <style scoped>
+
+#version {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px;
+  z-index: 1000; 
+}
+
 .content {
   display: grid;
   grid-template: 1fr / 20rem 1fr;
@@ -121,8 +133,16 @@ export default {
 .contentButtons {
   display: flex;
   width: 100%;
+  height: 15vh;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  padding: 4em 2em 4em;
+}
+
+#subcontent {
+  display: flex;
+  width:100%;
+  align-items: center;
 }
 
 .space {
@@ -135,5 +155,36 @@ export default {
     grid-template: 0.5fr 1fr/ 1fr;
     gap: 1rem;
   }
+
+  #subcontent {
+    display: flex;
+    flex-direction: column-reverse; 
+    align-items: flex-start; 
+    justify-content: center; 
+    height: auto; 
+    margin-bottom: 1.5em;
+    gap: 1rem;
+    margin: 0 auto;
+  }
+
+  .contentButtons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    height: auto; 
+    padding: 2rem 1rem 0rem;
+    text-align: center;
 }
+
+  .responsive-button {
+    margin-left: 1rem; 
+  }
+
+  .inputsearch {
+  margin-bottom: 1.5em;
+  }
+}
+
 </style>
