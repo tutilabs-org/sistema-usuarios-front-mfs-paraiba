@@ -1,16 +1,22 @@
 <template>
   <div>
     <div class="containerRegister">
-      <div class="icon">
-        <img src="~assets/img/user.svg" alt="" />
+      <div class="subcontainerregister">
+        <div class="icon">
+          <img src="~assets/img/user.svg" alt="" />
+        </div>
+        <div class="inform">
+          <h1>Editar</h1>
+        </div>
       </div>
-      <div class="inform">
-        <h1>Editar</h1>
-      </div>
+      <HomeButton @cancel="cancel" id="buttomhome"/>
     </div>
+    <div>
+          <p class="title titleTop" id="titlep">Dados dos usuários</p>
+        </div>
     <form @submit.prevent="editUser">
       <div class="columInputs">
-        <p class="title titleTop">Dados do usuários</p>
+      
         <inputText :titulo="'Matricula'" :status="statusMatricula" :valor="user.matricula" @newValue="watchMatricula" />
         <inputText :titulo="'Nome Completo'" :status="statusNome" @newValue="watchNome" :valor="user.nome_completo" />
         <inputText :titulo="'E-mail'" :status="statusEmail" @newValue="watchEmail" :valor="user.email" />
@@ -34,8 +40,8 @@
           <CheckList :sistemas="sistemas" @watchSistemas="watchSistemas" :user_s="user.User_Sistema" />
         </div>
         <div class="rowsButtons">
-          <ButtonCancel @cancel="cancel" />
-          <ButtonSave />
+          <ButtonComponent :title="'Cancelar'" :color="'outlined'" @click="cancel"/>
+          <ButtonComponent :title="'Salvar'" :color="'green'" type="submit"/>
         </div>
       </div>
     </form>
@@ -47,15 +53,14 @@ import InputText from "~/components/Inputs/InputText.vue";
 import InputTextCargo from "~/components/Inputs/InputTextCargo.vue";
 import InputSelect from "~/components/Inputs/InputSelect.vue";
 import InputPassWords from "~/components/Inputs/InputPasswords.vue";
-
 import ButtonSwitch from "~/components/buttons/ButtonSwitch.vue";
 import ButtonSwitchResetPassword from "~/components/buttons/ButtonSwitchResetPassword.vue";
 import ButtonCancel from "~/components/buttons/ButtonCancel.vue";
 import ButtonSave from "~/components/buttons/ButtonSave.vue";
-
+import HomeButton from "~/components/buttons/ButtonHome.vue";
 import CheckList from "~/components/Lists/CheckList.vue";
-
 import ValidateCargo from "~/utils/ValidateCargos";
+import ButtonComponent from "~/components/buttons/ButtonComponent.vue"
 
 import dayjs from "dayjs";
 
@@ -86,12 +91,12 @@ export default {
     InputTextCargo,
     InputSelect,
     InputPassWords,
-
+    HomeButton,
     ButtonSwitch,
     ButtonSwitchResetPassword,
     ButtonCancel,
     ButtonSave,
-
+    ButtonComponent,
     CheckList,
   },
   data() {
@@ -226,11 +231,20 @@ export default {
 <style scoped>
 .containerRegister {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
   padding: 1rem var(--negativeSpace);
   width: 100%;
   height: 14vh;
+  padding-right: 5em;
+  margin: 1rem 0;
+}
+
+.subcontainerregister {
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
 .inform h3 {
@@ -249,7 +263,6 @@ export default {
 form {
   background: var(--bg);
   padding: 2rem var(--negativeSpace);
-
   display: grid;
   grid-template: 1fr / 19rem minmax(37rem, 60rem);
 }
@@ -267,6 +280,7 @@ form {
 
 .headerCheck .styleGap {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -292,7 +306,16 @@ form {
   margin-top: 1rem;
 }
 
+#titlep { 
+ margin-left:2em;
+}
+
 @media (max-width: 865px) {
+
+  .containerRegister {
+    padding-right: 0.5em;
+  }
+
   form {
     height: auto;
     grid-template: 0.5fr 1fr / 1fr;
@@ -304,17 +327,27 @@ form {
     border: none;
   }
 
-  .titleTop {
-    position: absolute;
-    top: 23.5vh;
-  }
-
   .containerCheck {
     border: none;
   }
 }
 
 @media (max-width: 564px) {
+
+  .containerRegister {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+  }
+
+  .subcontainerregister {
+    width: 30vw;
+}
+
+.subcontainerregister h1{
+    font-size: 6vw;
+}
+
   .headerCheck {
     flex-direction: column;
     align-items: flex-start;
@@ -328,5 +361,6 @@ form {
   .containerCheck {
     padding: 0;
   }
+
 }
 </style>

@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <Header :nome="user.nome_completo" :cargo="user.cargo.descricao" />
-    <div class="container_card">
-      <div class="frameHub">
-        <MoldeAnimation />
-      </div>
-      <div class="content_scroll">
-        <div class="containerButton" v-for="s in sistemas" :key="s.sistema.id">
-          <ButtonReport :comReport="`${s.sistema.descricao}`" />
-        </div>
-      </div>
-    </div>
+  <div id="container">
+    <Header :nome="user.nome_completo" :cargo="user.nivel_de_acesso.descricao" />
+    <main>
+          <div class="containerButton" v-for="s in ordered_systems" :key="s.sistema.id">
+            <ButtonReport :comReport="`${s.sistema.descricao}`" />
+          </div>
+    </main>
+    <div id="version"><h3>{{ version }}</h3></div>
   </div>
 </template>
 
@@ -23,88 +19,85 @@ export default {
       return;
     }
 
-
     let user = $auth.user;
 
     let sistemas = user.User_Sistema;
-
     return { user, sistemas };
   },
   middleware: "authenticated",
   components: { ButtonReport },
   data() {
-    return {};
+    return {
+      version: 'V2.0.0',
+    };
   },
+  computed: {
+    ordered_systems() {
+      const desired_order = ["RRIM", "TRYOUT", "REL. TRYOUT", "FTI", "FIT"];
+      return this.sistemas.slice().sort((a, b) => {
+        return desired_order.indexOf(a.sistema.descricao) - desired_order.indexOf(b.sistema.descricao);
+      });
+    }
+  }
 };
 </script>
 
 <style scoped>
-/* width */
-::-webkit-scrollbar {
-  width: 1rem;
+#container {
+  height: 100vh;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: var(--white);
-  border-radius: 1rem;
+#version {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px;
+  z-index: 1000; 
 }
 
-.container_card {
-  width: 100%;
-  height: calc(100vh - 23vh);
-  background: var(--gradient-green);
-  padding: var(--negativeSpace) var(--negativeSpace) 0 var(--negativeSpace);
-
-  display: grid;
-  grid-template: 1fr / 22rem 1fr;
-  gap: var(--negativeSpace);
+h3 {
+  font-size: 1rem;
 }
 
-.containerButton {
-  height: fit-content;
+main {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, auto);
+    gap: 2.7vh; 
+    width: 100%;
+    margin: auto;
+    padding-top: 7vh;
+    padding-bottom: 7vh;
 }
 
-.content_scroll {
-  display: grid;
-  grid-auto-rows: 1fr;
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-  gap: 2rem;
+@media (max-width: 1322px) {
 
-  height: fit-content;
-  max-height: 100%;
+    main {
+        justify-content: center;
+        grid-template-columns: repeat(3, auto);        
+    }
 
-  overflow: hidden;
-  overflow-y: scroll;
-
-  padding-right: 8vw;
 }
 
-.frameHub {
-  border-radius: 10px;
-  width: 22rem;
-  height: 22rem;
-  background: var(--white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media (max-width: 989px) {
+
+    main {
+        justify-content: center;
+        grid-template-columns: repeat(2, auto);
+        column-gap: 5vw;    
+    }
+
 }
 
-@media (max-width: 926px) {
-  .content_scroll {
-    padding-right: 0vw;
-  }
+@media (max-width: 692px) {
+
+    main {
+        justify-content: center;
+        grid-template-columns: repeat(1, auto);
+        row-gap: 10vw; 
+    }
+    
 }
 
-@media (max-width: 768px) {
-  .content_scroll {
-    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
-  }
-}
-
-@media (max-width: 666px) {
-  .container_card {
-    grid-template: 23rem / 1fr;
-  }
-}
 </style>
