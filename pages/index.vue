@@ -5,7 +5,7 @@
           <div class="containerButton" v-for="s in ordered_systems" :key="s.sistema.id">
             <ButtonReport :comReport="`${s.sistema.descricao}`" />
           </div>
-          <button-matriz comReport="MATRIZ DE VERSATILIDADE"></button-matriz>
+          <ButtonReport comReport="MATRIZ DE VERSATILIDADE" />
     </main>
     <div id="version"><h3>{{ version }}</h3></div>
   </div>
@@ -13,7 +13,6 @@
 
 <script>
 import ButtonReport from "~/components/buttons/ButtonReport.vue";
-import ButtonMatriz from '../components/buttons/ButtonMatriz.vue';
 export default {
   async asyncData({ $auth, redirect }) {
     if ($auth.user.nivel_de_acesso.descricao == "admin_master") {
@@ -28,7 +27,7 @@ export default {
     return { user, sistemas };
   },
   middleware: "authenticated",
-  components: { ButtonReport, ButtonMatriz },
+  components: { ButtonReport},
   data() {
     return {
       version: 'V2.0.0',
@@ -36,7 +35,7 @@ export default {
   },
   computed: {
     ordered_systems() {
-      const desired_order = ["RRIM", "TRYOUT", "REL. TRYOUT", "FTI", "FIT", "MATRIZ"];
+      const desired_order = ["RRIM", "TRYOUT", "REL. TRYOUT", "FTI", "FIT"];
       return this.sistemas.slice().sort((a, b) => {
         return desired_order.indexOf(a.sistema.descricao) - desired_order.indexOf(b.sistema.descricao);
       });
