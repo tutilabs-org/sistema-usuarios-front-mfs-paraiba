@@ -43,7 +43,9 @@ export default {
     }
   },
   computed: {
+    
     systemColor() {
+      console.log( this.comReport)
       switch (this.comReport) {
         case 'RRIM':
           return 'var(--rrim-color)';
