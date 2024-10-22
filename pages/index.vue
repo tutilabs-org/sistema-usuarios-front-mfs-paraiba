@@ -5,6 +5,7 @@
           <div class="containerButton" v-for="s in ordered_systems" :key="s.sistema.id">
             <ButtonReport :comReport="`${s.sistema.descricao}`" />
           </div>
+          <ButtonReport comReport="MATRIZ DE VERSATILIDADE" />
     </main>
     <div id="version"><h3>{{ version }}</h3></div>
   </div>
@@ -22,10 +23,11 @@ export default {
     let user = $auth.user;
 
     let sistemas = user.User_Sistema;
+    console.log(sistemas)
     return { user, sistemas };
   },
   middleware: "authenticated",
-  components: { ButtonReport },
+  components: { ButtonReport},
   data() {
     return {
       version: 'V2.0.0',
