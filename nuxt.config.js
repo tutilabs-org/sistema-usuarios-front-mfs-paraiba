@@ -33,7 +33,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: "http://185.209.179.253:7900",
+    baseURL: "https://apiengenhariapb.tutilabs.com.br",
     // baseURL: "http://localhost:3333",
   },
   toast: {
@@ -52,20 +52,30 @@ export default {
   auth: {
     strategies: {
       local: {
+        token: {
+          property: "token", // O caminho do token retornado pela API
+          global: true,
+          type: "Token",
+          name: "Authorization", // Header onde será setado o token
+        },
         endpoints: {
-          login: {
-            url: "/session",
-            method: "post",
-          },
+          login: { url: "/session", method: "post" },
           logout: false,
           user: false,
-          tokenRequired: true,
-          tokenType: "Token",
-          tokenName: "Authorization",
         },
+        user: false,
+      },
+    },
+    cookie: {
+      options: {
+        domain: ".tutilabs.com.br", // Define o domínio onde o cookie será válido
+        path: "/", // Caminho do cookie
+        secure: process.env.NODE_ENV === "production", // Apenas HTTPS em produção
+        sameSite: "lax", // Política SameSite
       },
     },
   },
+  
   // Build Configuration: https://go.nuxtjs.dev/config-build
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
