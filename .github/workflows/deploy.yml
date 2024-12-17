@@ -16,6 +16,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
           source: ". , !node_modules"
           target: ${{ secrets.SSH_TARGET }}
       - name: Deploy to Sever
@@ -24,4 +25,5 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
           script: cd /home/app/projetos/Mfs/sistema-usuarios/ && docker-compose stop  sistema-usuarios-front-mfs && docker-compose up -d --build  sistema-usuarios-front-mfs
