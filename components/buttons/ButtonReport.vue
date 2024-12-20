@@ -24,7 +24,7 @@ export default {
           break
         case "TRYOUT":
           // alert("Em desenvolvimento")
-          window.location.replace('https://stryoutpb.tutilabs.com.br');
+          window.location.replace(process.env.NUXT_ENV_URL_TRYOUT);
           break
         case "FTI":
           // alert("Em desenvolvimento")
