@@ -34,7 +34,7 @@ export default {
     NUXT_ENV_URL_FIT: process.env.NUXT_ENV_URL_FIT || "http://localhost:5001", // Valor padrão local
     NUXT_ENV_URL_FTI: process.env.NUXT_ENV_URL_FTI || "http://localhost:5001", // Valor padrão local
     NUXT_ENV_URL_TRYOUT: process.env.NUXT_ENV_URL_TRYOUT || "http://localhost:5001", // Valor padrão local
-    NUXT_ENV_URL_RRIM: process.env.NUXT_ENV_URL_RRIM || "http://localhost:5001", // Valor padrão local
+    NUXT_ENV_URL_RRIM: process.env.NUXT_ENV_URL_RRIM || "http://rrimpb.tutilabs.com.br:5001", // Valor padrão local
     NUXT_ENV_URL_MATRIZ: process.env.NUXT_ENV_URL_MATRIZ || "http://localhost:5001"
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
